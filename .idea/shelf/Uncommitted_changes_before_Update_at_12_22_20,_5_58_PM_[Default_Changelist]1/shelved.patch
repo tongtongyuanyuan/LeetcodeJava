@@ -1,0 +1,864 @@
+Index: Amazon/amazon.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<module version=\"4\">\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\n    <exclude-output />\n    <content url=\"file://$MODULE_DIR$\">\n      <sourceFolder url=\"file://$MODULE_DIR$/src\" isTestSource=\"false\" />\n    </content>\n    <orderEntry type=\"inheritedJdk\" />\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\n  </component>\n</module>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Amazon/amazon.iml	(revision ee2ceee6dacebf75f83d46dfdc7683f91cf146e9)
++++ Amazon/amazon.iml	(date 1608677905264)
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <module version="4">
++  <component name="ExternalSystem" linkedProjectPath="$USER_HOME$/IdeaProjects/tdm-service-gateway" rootProjectPath="$USER_HOME$/IdeaProjects/tdm-service-gateway" />
+   <component name="NewModuleRootManager" inherit-compiler-output="true">
+     <exclude-output />
+     <content url="file://$MODULE_DIR$">
+@@ -8,4 +9,4 @@
+     <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+-</module>
++</module>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"JavaScriptSettings\">\n    <option name=\"languageLevel\" value=\"ES6\" />\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_1_9\" default=\"false\" project-jdk-name=\"9.0\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/Amazon/out\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision ee2ceee6dacebf75f83d46dfdc7683f91cf146e9)
++++ .idea/misc.xml	(date 1608677905264)
+@@ -3,7 +3,7 @@
+   <component name="JavaScriptSettings">
+     <option name="languageLevel" value="ES6" />
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_9" default="false" project-jdk-name="9.0" project-jdk-type="JavaSDK">
+-    <output url="file://$PROJECT_DIR$/Amazon/out" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/../Desktop/Java学习/点餐系统/diancan" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/LeetcodeJava.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<module type=\"JAVA_MODULE\" version=\"4\">\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\n    <exclude-output />\n    <content url=\"file://$MODULE_DIR$\" />\n    <orderEntry type=\"inheritedJdk\" />\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\n  </component>\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/LeetcodeJava.iml	(revision ee2ceee6dacebf75f83d46dfdc7683f91cf146e9)
++++ .idea/LeetcodeJava.iml	(date 1608677905262)
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <module type="JAVA_MODULE" version="4">
++  <component name="ExternalSystem" linkedProjectPath="$USER_HOME$/IdeaProjects/tdm-service-gateway" rootProjectPath="$USER_HOME$/IdeaProjects/tdm-service-gateway" />
+   <component name="NewModuleRootManager" inherit-compiler-output="true">
+     <exclude-output />
+     <content url="file://$MODULE_DIR$" />
+Index: Amazon/src/Logs.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Amazon/src/Logs.java	(date 0)
++++ Amazon/src/Logs.java	(date 0)
+@@ -0,0 +1,59 @@
++import java.util.*;
++
++
++public class Logs {
++
++    public static List<String> processLogs(List<String> logs, int threshold){
++
++        Map<String, Integer> userToFreq = new HashMap<>();
++        for(String log : logs){
++            String[] array = log.split(" ");
++            String usr1 = array[0];
++            String usr2 = array[1];
++            userToFreq.put(usr1, userToFreq.getOrDefault(usr1, 0) + 1);
++            if(!usr2.equals(usr1)){
++                userToFreq.put(usr2, userToFreq.getOrDefault(usr2, 0) + 1);
++            }
++        }
++
++        List<String> res = new ArrayList<>();
++        for(Map.Entry<String, Integer> entry : userToFreq.entrySet()){
++            if(entry.getValue() >= threshold){
++                res.add(entry.getKey());
++            }
++        }
++
++        List<Integer> intRes = new ArrayList<>();
++        for(String str : res){
++            intRes.add(Integer.valueOf(str));
++        }
++        Collections.sort(intRes);
++
++
++        List<String> StringResult = new ArrayList<>();
++        for(int val : intRes){
++            StringResult.add(val + "");
++        }
++        return StringResult;
++    }
++
++    public static void main(String[] args) {
++            List<String> logs = new ArrayList<>();
++//            logs.add("88 99 200");
++//            logs.add("88 99 300");
++//            logs.add("99 32 100");
++//            logs.add("12 12 15");
++//            logs.add("1 2 50");
++//            logs.add("1 7 70");
++//            logs.add("2 2 17");
++//            logs.add("1 3 20");
++              logs.add("88 99 200");
++              logs.add("88 99 300");
++              logs.add("99 32 100");
++              logs.add("12 12 15");
++            List<String> res = processLogs(logs, 2);
++            for(String i : res) {
++                System.out.println(i);
++            }
++    }
++}
+Index: Amazon/src/TrappingRainWaterI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Amazon/src/TrappingRainWaterI.java	(date 0)
++++ Amazon/src/TrappingRainWaterI.java	(date 0)
+@@ -0,0 +1,45 @@
++import java.util.Stack;
++
++// 解放这个算法需要 left 和 right 两个指针分别指向数组的首尾位置，从两边向中间扫描，在当前两指针确定的范围内，先比较两头找出较小值，如果较小值是 left 指向的值，则从左向右扫描，如果较小值是 right 指向的值，则从右向左扫描，若遇到的值比当较小值小，则将差值存入结果，如遇到的值大，则重新确定新的窗口范围，以此类推直至 left 和 right 指针重合
++class TrappingRainWaterI {
++    public int trap(int[] height) {
++        int l = 0, r = height.length - 1;
++        int res = 0;
++        while(l < r) {
++            int mn = Math.min(height[l], height[r]);
++            if(height[l] == mn) {
++                ++l;  //先加
++                while(l < r && height[l] < mn) {
++                    res += mn - height[l];
++                    l++;
++                }
++            }else {
++                --r;
++                while(l < r && height[r] < mn) {
++                    res += mn - height[r];
++                    r--;
++                }
++            }
++        }
++        return res;
++    }
++}
++//Monotonous Stack
++//class TrappingRainWaterI{
++//    public int trap(int[] height) {
++//        int l = 0, r = height.length, res = 0; //r不是height.length - 1
++//        Stack <Integer> s = new Stack<>();
++//        while(l < r) {
++//            if(s.isEmpty() || height[l] <= height[s.peek()]) {
++//                s.push(l);
++//                l++;
++//            }else{
++//                int t = s.pop();
++//                if(s.isEmpty()) continue;
++//                int maxDiff = Math.min(height[l], height[s.peek()]) - height[t];
++//                res += maxDiff * (l - s.peek() - 1);
++//            }
++//        }
++//        return res;
++//    }
++//}
+Index: Amazon/src/TwoSumZero.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Amazon/src/TwoSumZero.java	(date 0)
++++ Amazon/src/TwoSumZero.java	(date 0)
+@@ -0,0 +1,56 @@
++//Solution1. Sorting Based
++//1. Sort the array in non-decreasing order.
++//2. Initialize two index variables to find the candidate
++//   elements in the sorted array.
++//       (a) Initialize first to the leftmost index: l = 0
++//       (b) Initialize second  the rightmost index:  r = ar_size-1
++//3. Loop while l < r.
++//       (a) If (A[l] + A[r] == sum)  then return 1
++//       (b) Else if( A[l] + A[r] <  sum )  then l++
++//       (c) Else r--
++//4. No candidates in whole array - return 0
++// T = O(nlogn)
++
++//Solution2. Hahsing Based
++//1. Maintain HashMap for all Integer with Key as B-A[i] and Value as Index i.
++//2. Before insert, check that number is already present in Map.
++//   If YES, Return current index as index2 and index1 from Map entry.
++//   If NO, Insert new entry to the map.
++//T = O(n) S = O(n)
++
++import java.util.*;
++
++public class TwoSumZero {
++
++    public ArrayList<Integer> twoSum(final List<Integer> A, int B) {
++
++
++        ArrayList<Integer> result=new ArrayList<Integer>();  //result list for index1 and index2
++
++        Map<Integer,Integer> map=new HashMap<Integer,Integer>();
++
++        if(A.size()<2) return result;
++
++
++        for(int i=0;i<A.size();i++){
++
++            if(map.containsKey(A.get(i))){     // Check if number is already present in Map
++                result.add(map.get(A.get(i)));  //Get index1 from Map entry value.
++                result.add(i+1);                //Current index will be index2
++                break;
++            }
++
++            if(!map.containsKey(B-A.get(i)))map.put(B-A.get(i),i+1); //Insert new entry
++        }
++        return result;
++    }
++    public static void main(String[] args) {
++
++        Integer [] a= { 2, 7, 11, 15 };
++
++        System.out.println(new TwoSumZero().twoSum(Arrays.asList(a), 9));
++    }
++
++}
++
++//https://codenuclear.com/two_sum_problem/
+\ No newline at end of file
+Index: Amazon/src/SumFre.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Amazon/src/SumFre.java	(date 0)
++++ Amazon/src/SumFre.java	(date 0)
+@@ -0,0 +1,1 @@
++
+Index: Facebook/Facebook.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<module type=\"JAVA_MODULE\" version=\"4\">\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\n    <exclude-output />\n    <content url=\"file://$MODULE_DIR$\">\n      <sourceFolder url=\"file://$MODULE_DIR$/src\" isTestSource=\"false\" />\n    </content>\n    <orderEntry type=\"jdk\" jdkName=\"1.8\" jdkType=\"JavaSDK\" />\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\n  </component>\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Facebook/Facebook.iml	(revision ee2ceee6dacebf75f83d46dfdc7683f91cf146e9)
++++ Facebook/Facebook.iml	(date 1608677905265)
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <module type="JAVA_MODULE" version="4">
++  <component name="ExternalSystem" linkedProjectPath="$USER_HOME$/IdeaProjects/tdm-service-gateway" rootProjectPath="$USER_HOME$/IdeaProjects/tdm-service-gateway" />
+   <component name="NewModuleRootManager" inherit-compiler-output="true">
+     <exclude-output />
+     <content url="file://$MODULE_DIR$">
+Index: Amazon/src/pathUnweighted.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Amazon/src/pathUnweighted.java	(date 0)
++++ Amazon/src/pathUnweighted.java	(date 0)
+@@ -0,0 +1,136 @@
++// Java program to find shortest path in an undirected
++// graph
++import java.util.ArrayList;
++import java.util.Iterator;
++import java.util.LinkedList;
++
++public class pathUnweighted {
++
++    // Driver Program
++    public static void main(String args[])
++    {
++        // No of vertices
++        int v = 8;
++
++        // Adjacency list for storing which vertices are connected
++        ArrayList<ArrayList<Integer>> adj =
++                new ArrayList<ArrayList<Integer>>(v);
++        for (int i = 0; i < v; i++) {
++            adj.add(new ArrayList<Integer>());
++        }
++
++        // Creating graph given in the above diagram.
++        // add_edge function takes adjacency list, source
++        // and destination vertex as argument and forms
++        // an edge between them.
++        addEdge(adj, 0, 1);
++        addEdge(adj, 0, 3);
++        addEdge(adj, 1, 2);
++        addEdge(adj, 3, 4);
++        addEdge(adj, 3, 7);
++        addEdge(adj, 4, 5);
++        addEdge(adj, 4, 6);
++        addEdge(adj, 4, 7);
++        addEdge(adj, 5, 6);
++        addEdge(adj, 6, 7);
++        int source = 0, dest = 7;
++        printShortestDistance(adj, source, dest, v);
++    }
++
++    // function to form edge between two vertices
++    // source and dest
++    private static void addEdge(ArrayList<ArrayList<Integer>> adj, int i, int j)
++    {
++        adj.get(i).add(j);
++        adj.get(j).add(i);
++    }
++
++    // function to print the shortest distance and path
++    // between source vertex and destination vertex
++    private static void printShortestDistance(
++            ArrayList<ArrayList<Integer>> adj,
++            int s, int dest, int v)
++    {
++        // predecessor[i] array stores predecessor of
++        // i and distance array stores distance of i
++        // from s
++        int pred[] = new int[v];
++        int dist[] = new int[v];
++
++        if (BFS(adj, s, dest, v, pred, dist) == false) {
++            System.out.println("Given source and destination" +
++                    "are not connected");
++            return;
++        }
++
++        // LinkedList to store path
++        LinkedList<Integer> path = new LinkedList<Integer>();
++        int crawl = dest;
++        path.add(crawl);
++        while (pred[crawl] != -1) {
++            path.add(pred[crawl]);
++            crawl = pred[crawl];
++        }
++
++        // Print distance
++        System.out.println("Shortest path length is: " + dist[dest]);
++
++        // Print path
++        System.out.println("Path is ::");
++        for (int i = path.size() - 1; i >= 0; i--) {
++            System.out.print(path.get(i) + " ");
++        }
++    }
++
++    // a modified version of BFS that stores predecessor
++    // of each vertex in array pred
++    // and its distance from source in array dist
++    private static boolean BFS(ArrayList<ArrayList<Integer>> adj, int src,
++                               int dest, int v, int pred[], int dist[])
++    {
++        // a queue to maintain queue of vertices whose
++        // adjacency list is to be scanned as per normal
++        // BFS algorithm using LinkedList of Integer type
++        LinkedList<Integer> queue = new LinkedList<Integer>();
++
++        // boolean array visited[] which stores the
++        // information whether ith vertex is reached
++        // at least once in the Breadth first search
++        boolean visited[] = new boolean[v];
++
++        // initially all vertices are unvisited
++        // so v[i] for all i is false
++        // and as no path is yet constructed
++        // dist[i] for all i set to infinity
++        for (int i = 0; i < v; i++) {
++            visited[i] = false;
++            dist[i] = Integer.MAX_VALUE;
++            pred[i] = -1;
++        }
++
++        // now source is first to be visited and
++        // distance from source to itself should be 0
++        visited[src] = true;
++        dist[src] = 0;
++        queue.add(src);
++
++        // bfs Algorithm
++        while (!queue.isEmpty()) {
++            int u = queue.remove();
++            for (int i = 0; i < adj.get(u).size(); i++) {
++                if (visited[adj.get(u).get(i)] == false) {
++                    visited[adj.get(u).get(i)] = true;
++                    dist[adj.get(u).get(i)] = dist[u] + 1;
++                    pred[adj.get(u).get(i)] = u;
++                    queue.add(adj.get(u).get(i));
++
++                    // stopping condition (when we find
++                    // our destination)
++                    if (adj.get(u).get(i) == dest)
++                        return true;
++                }
++            }
++        }
++        return false;
++    }
++}
+\ No newline at end of file
+Index: Amazon/src/FirstUniqueNumber.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Amazon/src/FirstUniqueNumber.java	(date 0)
++++ Amazon/src/FirstUniqueNumber.java	(date 0)
+@@ -0,0 +1,149 @@
++//https://leetcode.com/explore/challenge/card/30-day-leetcoding-challenge/531/week-4/3313/
++//You have a queue of integers, you need to retrieve the first unique integer in the queue.
++//
++//Implement the FirstUnique class:
++//
++//FirstUnique(int[] nums) Initializes the object with the numbers in the queue.
++//int showFirstUnique() returns the value of the first unique integer of the queue, and returns -1 if there is no such integer.
++//void add(int value) insert value to the qu
++
++import java.util.*;
++
++// //similar to LRU, DoubledLinkedlist/queue with Hashmap
++class FirstUnique {
++    public class ListNode {
++        int val;
++        ListNode prev;
++        ListNode next;
++
++        public ListNode(int v) {
++            val = v;
++            next = null;
++            prev = null;
++        }
++    }
++
++
++    private class firstlist {  //定义了一个新的class
++        private ListNode head;
++        private ListNode tail;
++
++        public firstlist() {   //constructor的写法
++            head = new ListNode(-1);
++            tail = new ListNode(-1);
++
++            head.next = tail;
++            tail.prev = head;
++        }
++
++        public ListNode getFirst() {
++            return head.next;
++        }
++
++        public boolean isEmpty() {
++            return head.next == tail;
++        }
++
++        public void remove(ListNode node) {
++            ListNode prev = node.prev;
++            ListNode next = node.next;
++            prev.next = next;
++            next.prev = prev;
++        }
++
++        public ListNode append(int num) {  //append the node before the tail
++            ListNode node = new ListNode(num);
++            ListNode prev = tail.prev;
++            prev.next = node;
++            node.next = tail;
++            tail.prev = node;
++            node.prev = prev;  //注意这里
++
++            return node;
++        }
++    }
++
++
++    // private ListNode kl; //c++用了list<int>::iterator, java用一个doubledlinkedlist
++    private firstlist kl; //kl定义的新的class
++    private Map < Integer, ListNode > m;
++
++    public FirstUnique(int[] nums) {
++        m = new HashMap <>();  //instantiate object
++        kl = new firstlist();
++
++        for (int n : nums) {
++            add(n);
++        }
++    }
++
++    public int showFirstUnique() {
++        if (kl.isEmpty())
++            return -1;
++        return kl.getFirst().val; //对应linkedlist的第一个位置上的值
++    }
++
++    public void add(int value) {
++        if (m.containsKey(value)) {  //map里面有，看看list里面的位置
++            ListNode node1 = m.get(value);
++            if (node1 != null) {   // c++里面list.end() == null表示在list中出现过
++                kl.remove(node1);  //删掉
++                m.put(value, null); //没了
++            }
++        } else {        //first appearance
++            ListNode node2 = kl.append(value);  //加在list后面
++            //找到在linkedlist中的位置更新在map中对应的位置
++            m.put(value, node2);
++        }
++    }
++}
++//import java.util.LinkedHashSet;
++//import java.util.Set;
++//
++////     }
++//// } //Timelimit
++//class FirstUnique {
++//    private Set <Integer> set;
++//    private Set<Integer> deque;
++//    public FirstUnique(int[] nums) {
++//
++//        deque = new LinkedHashSet <Integer>();
++//        set = new HashSet <Integer>();
++//        for (int i = 0; i < nums.length; i++) {
++//            if (set.contains(nums[i])) {
++//                deque.remove(nums[i]);
++//            }
++//            else {
++//                deque.add(nums[i]);
++//            }
++//
++//            set.add(nums[i]);
++//        }
++//    }
++//
++//    public int showFirstUnique() {
++//        if (deque.isEmpty()) {
++//            return -1;
++//        }
++//        return deque.iterator().next();
++//
++//    }
++//
++//    public void add(int value) {
++//
++//        if (set.contains(value)) {
++//            deque.remove(value);
++//        }
++//        else {
++//            set.add(value);
++//            deque.add(value);
++//        }
++//
++//    }
++//}
++/**
++ * Your FirstUnique object will be instantiated and called as such:
++ * FirstUnique obj = new FirstUnique(nums);
++ * int param_1 = obj.showFirstUnique();
++ * obj.add(value);
++ */
+Index: Amazon/src/LRUCache.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Amazon/src/LRUCache.java	(date 0)
++++ Amazon/src/LRUCache.java	(date 0)
+@@ -0,0 +1,97 @@
++import java.util.HashMap;
++
++class DNode {
++    public DNode prev;
++    public DNode next;
++    public int key;
++
++    public DNode(){
++    }
++
++    public DNode(DNode prev, DNode next, int key) {
++        this.prev = prev;
++        this.next = next;
++        this.key = key;
++    }
++}
++class LRUCache {
++    HashMap < Integer, Integer > valMap;
++    HashMap < Integer, DNode > nodeMap;
++
++    int size;
++    int maxCapacity;
++    DNode head;
++    DNode tail;
++
++    public LRUCache(int capacity) {
++        size = 0;
++        valMap = new HashMap <>();
++        nodeMap = new HashMap <>();
++        maxCapacity = capacity;
++        head = new DNode(null, tail, 0);
++        tail = new DNode(head, null, 0);
++    }
++
++    public int get(int key) {
++        Integer val = valMap.get(key);
++        if (val != null) {
++            DNode node = nodeMap.get(key);
++            removeFromList(node); ///存在的话就把list里面原来对应的位置删除，从新加到list尾部
++            addToList(node); //add the node to the last of the list
++            return val;
++        } else {
++            return -1;
++        }
++    }
++
++    public void put(int key, int val) {
++        Integer storedVal = valMap.get(key);
++        if (storedVal != null) {
++            DNode node = nodeMap.get(key); //存在就remove, update新位置
++            removeFromList(node);
++        } else {
++            size++;
++            if (size > maxCapacity) {
++                removeFirst();
++            }
++        }
++        DNode newNode = new DNode(null, null, key);
++        valMap.put(key, val);
++        nodeMap.put(key, newNode); //存在这个val或者不存在都要进行这些操作，存在的时候，先删掉，
++                                    //不存在的时候，判断size,不超过就直接addToFirst,超过的话就先删掉first one
++        addToList(newNode);
++    }
++
++    public void addToList(DNode node) {  ////addToTail.新的在队尾，旧的在队首
++        DNode oTail = tail.prev;
++        oTail.next = node;
++        node.prev = oTail;
++        node.next = tail;
++        tail.prev = node;
++    }
++
++    public void removeFromList(DNode node) {
++        DNode prevNode = node.prev;
++        DNode nextNode = node.next;
++        prevNode.next = nextNode;
++        nextNode.prev = prevNode;
++    }
++
++    private void removeFirst() {
++        nodeMap.remove(head.next.key);
++        valMap.remove(head.next.key);
++        removeFromList(head.next);
++        size--;
++    }
++
++    /**
++     * Your LRUCache object will be instantiated and called as such:
++     * LRUCache obj = new LRUCache(capacity);
++     * int param_1 = obj.get(key);
++     * obj.put(key,value);
++     */
++
++    public static void main(String[] args) {
++
++    }
++}
+\ No newline at end of file
+Index: Microsoft/Microsoft.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<module type=\"JAVA_MODULE\" version=\"4\">\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\n    <exclude-output />\n    <content url=\"file://$MODULE_DIR$\">\n      <sourceFolder url=\"file://$MODULE_DIR$/src\" isTestSource=\"false\" />\n    </content>\n    <orderEntry type=\"jdk\" jdkName=\"1.8\" jdkType=\"JavaSDK\" />\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\n  </component>\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Microsoft/Microsoft.iml	(revision ee2ceee6dacebf75f83d46dfdc7683f91cf146e9)
++++ Microsoft/Microsoft.iml	(date 1608677905266)
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <module type="JAVA_MODULE" version="4">
++  <component name="ExternalSystem" linkedProjectPath="$USER_HOME$/IdeaProjects/tdm-service-gateway" rootProjectPath="$USER_HOME$/IdeaProjects/tdm-service-gateway" />
+   <component name="NewModuleRootManager" inherit-compiler-output="true">
+     <exclude-output />
+     <content url="file://$MODULE_DIR$">
+Index: Google/Google.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<module type=\"JAVA_MODULE\" version=\"4\">\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\n    <exclude-output />\n    <content url=\"file://$MODULE_DIR$\">\n      <sourceFolder url=\"file://$MODULE_DIR$/src\" isTestSource=\"false\" />\n    </content>\n    <orderEntry type=\"inheritedJdk\" />\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\n  </component>\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Google/Google.iml	(revision ee2ceee6dacebf75f83d46dfdc7683f91cf146e9)
++++ Google/Google.iml	(date 1608677905266)
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <module type="JAVA_MODULE" version="4">
++  <component name="ExternalSystem" linkedProjectPath="$USER_HOME$/IdeaProjects/tdm-service-gateway" rootProjectPath="$USER_HOME$/IdeaProjects/tdm-service-gateway" />
+   <component name="NewModuleRootManager" inherit-compiler-output="true">
+     <exclude-output />
+     <content url="file://$MODULE_DIR$">
+Index: Amazon/src/ShoppingPattern.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Amazon/src/ShoppingPattern.java	(date 0)
++++ Amazon/src/ShoppingPattern.java	(date 0)
+@@ -0,0 +1,55 @@
++import java.util.*;
++
++public class ShoppingPattern {
++    public static int shoppingPatters(int products_nodes, int[] products_from, int[] products_to) {
++        int len = products_from.length;
++        int n = products_nodes;
++        //build graph
++        Map < Integer, Set < Integer > > graphS = new HashMap <>();
++        Map < Integer, List < Integer > > graphL = new HashMap <>();
++        for (int i = 1; i <= n; i++) {
++            graphS.put(i, new HashSet <>());
++            graphL.put(i, new ArrayList <>());
++        }
++
++
++        for (int i = 0; i < len; i++) {
++            graphS.get(products_from[i]).add(products_to[i]);
++            graphS.get(products_to[i]).add(products_from[i]);
++            graphL.get(products_from[i]).add(products_to[i]);
++            graphL.get(products_to[i]).add(products_from[i]);
++        }
++
++        int res = Integer.MAX_VALUE;
++        for (int i = 1; i <= n; i++) {
++            List < Integer > list = graphL.get(i);
++            int l = list.size();
++            //try all pairs
++            for (int j = 0; j < l - 1; ++j) {
++                for (int k = j + 1; k < l; ++k) {
++                    if (!graphS.get(list.get(j)).contains(list.get(k))) {
++                        //not a trio
++                        continue;
++                    }
++                    //find a trio, update res
++                    res = Math.min(res, list.size() + graphL.get(list.get(j)).size() + graphL.get(list.get(k)).size() - 6);
++                }
++            }
++        }
++
++        return res == Integer.MAX_VALUE ? -1 : res;
++    }
++
++    public static void main(String[] args) {
++            //int products_nodes = 6;
++            int products_nodes = 5;
++            //int products_edges = 5;
++          //int[] products_from = {1,2,2,3,4,5};
++           //int[] products_to = {2,4,5,5,5,6};
++            int[] products_from = {1,1,2,2,3,4};
++            int[] products_to = {2,3,3,4,4,5,5};
++            int res = ShoppingPattern.shoppingPatters(products_nodes, products_from, products_to);
++            System.out.println(res);
++
++    }
++}
+\ No newline at end of file
+Index: Amazon/src/TinyUrl2.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Amazon/src/TinyUrl2.java	(date 0)
++++ Amazon/src/TinyUrl2.java	(date 0)
+@@ -0,0 +1,67 @@
++import java.util.HashMap;
++import java.util.Map;
++import java.util.Random;
++
++public class TinyUrl2 {
++    /*
++     * @param long_url: a long url
++     * @param key: a short key
++     * @return: a short url starts with http://tiny.url/
++     */
++    public String createCustom(String long_url, String key) {
++        String short_url = "http://tiny.url/" + key;
++        if (long2Short.containsKey(long_url)) {
++            return long2Short.get(long_url).equals(short_url) ? short_url : "error";
++        }
++        if (short2Long.containsKey(short_url)) {
++            return "error";
++        }
++
++        short2Long.put(short_url, long_url);
++        long2Short.put(long_url, short_url);
++        return short_url;
++    }
++
++    /*
++     * @param long_url: a long url
++     * @return: a short url starts with http://tiny.url/
++     */
++    public String longToShort(String long_url) {
++        if (long2Short.containsKey(long_url)) {
++            return long2Short.get(long_url);
++        }
++
++        String short_url = "http://tiny.url/" + getRandomString();
++        while (short2Long.containsKey(short_url)) {
++            short_url = "http://tiny.url/" + getRandomString();
++        }
++        short2Long.put(short_url, long_url);
++        long2Short.put(long_url, short_url);
++        return short_url;
++    }
++
++    /*
++     * @param short_url: a short url starts with http://tiny.url/
++     * @return: a long url
++     */
++    public String shortToLong(String short_url) {
++        if (short2Long.containsKey(short_url)) {
++            return short2Long.get(short_url);
++        }
++        return null;
++    }
++
++    private Map <String, String> long2Short = new HashMap <>();
++    private Map<String, String> short2Long = new HashMap<>();
++
++    private String getRandomString() {
++        Random rand = new Random();
++        String result = "";
++        String dict = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
++        for (int i = 0; i < 6; ++i) {
++            int cur = rand.nextInt(62);
++            result += dict.charAt(cur);
++        }
++        return result;
++    }
++}
+\ No newline at end of file
+Index: Amazon/src/Solution.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.HashMap;\n\nclass Node {\n    public int val;\n    public Node next;\n    public Node random;\n\n    public Node() {\n    }\n\n\n    public Node(int _val, Node _next, Node _random) {\n        val =  _val;\n        next = _next;\n        random = _random;\n    }\n};\n//public class Solution {\n//    public Node copyRandomList(Node head) {\n//        HashMap<Node, Node> visited = new HashMap<Node, Node>();\n//        return helper(head, visited);\n//    }\n//    Node helper(Node node, HashMap<Node, Node> visited) {\n//        if(visited.containsKey(node)) {\n//            return visited.get(node); //建立的是oldnode ->newnode 的映射关系\n//        }\n//        Node res = new Node(node.val, null, null);\n//        visited.put(node, res);\n//        res.next = helper(node.next, visited);\n//        res.random = helper(node.random, visited);\n//        return res;\n//    }\n//}\n//iterative:\npublic class Solution{\n\n    HashMap<Node, Node> visited = new HashMap<Node, Node> ();\n\n    public Node getClonedNode(Node node) {\n        if(node != null){\n            if(this.visited.containsKey(node)) {\n                return this.visited.get(node);\n            }else {\n                this.visited.put(node, new Node(node.val, null, null));\n                return this.visited.get(node);\n            }\n        }\n        return null;\n    }\n\n    public Node copyRandomList(Node head) {\n            if(head == null) return null;\n\n            Node oldnode = head;\n            //create the clone of original node\n        Node clonenode = new Node(oldnode.val, null, null);\n        this.visited.put(oldnode, clonenode);\n        while(oldnode != null) {\n            clonenode.next = this.getClonedNode(oldnode.next);\n            clonenode.random = this.getClonedNode(oldnode.random);\n\n            //move the linkedlist\n            oldnode = oldnode.next;\n            clonenode = clonenode.next;\n        }\n        return this.visited.get(head);\n    }\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Amazon/src/Solution.java	(revision ee2ceee6dacebf75f83d46dfdc7683f91cf146e9)
++++ Amazon/src/Solution.java	(date 1608677905265)
+@@ -67,3 +67,4 @@
+     }
+ }
+ 
++//138.ClonedNode
+\ No newline at end of file
