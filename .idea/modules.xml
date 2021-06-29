@@ -7,7 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/JP/JP.iml" filepath="$PROJECT_DIR$/JP/JP.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/LeetcodeJava.iml" filepath="$PROJECT_DIR$/.idea/LeetcodeJava.iml" />
       <module fileurl="file://$PROJECT_DIR$/Microsoft/Microsoft.iml" filepath="$PROJECT_DIR$/Microsoft/Microsoft.iml" />
-      <module fileurl="file://$PROJECT_DIR$/amazon/amazon.iml" filepath="$PROJECT_DIR$/amazon/amazon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Amazon/amazon.iml" filepath="$PROJECT_DIR$/Amazon/amazon.iml" />
     </modules>
   </component>
 </project>
