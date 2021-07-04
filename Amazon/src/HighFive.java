@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
-
+//Leetcode: 1086
 class Record {
     public int id, score;
 
