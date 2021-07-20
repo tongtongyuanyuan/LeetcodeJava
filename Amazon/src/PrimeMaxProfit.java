@@ -154,12 +154,12 @@ public class PrimeMaxProfit {
                 int next_j = j;
                 while (next_j >= 0 && returnRouteList.get(next_j).get(1) == back) {
                     res.add(Arrays.asList(forwardRouteList.get(i).get(0), returnRouteList.get(next_j).get(0)));
-                    next_j--;  //>=cur_max时，但是都<=maxTravelDist
+                    next_j--;  //>=cur_max时，但是都<=maxTravelDist,到最后一个相等的位置前面，变小了，此时跳出来要移动i,找go里更大的
                 }
-                i++;
+                i++; //继续移动i找更大的<=maxTravelDist的cur_max
             }
             else {
-                j--; //移动back里的指针
+                j--; //移动back里的指针,往左移动找小的值
             }
         }
         return res;
