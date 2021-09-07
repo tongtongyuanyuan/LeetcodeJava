@@ -54,4 +54,4 @@ public class MergeFiles {
 
     }
 
-}
+}//返回左->root->right

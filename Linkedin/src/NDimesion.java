@@ -22,33 +22,69 @@ Ex:- If we have 3D list of dimensions [2,2,3]
 
         */
 // T = O(N  * M) S= O(M) Iterative
-    public class NDimesion {
+//Time Complexity: O(N*M)
+//Space Complexity: O(M)
+import java.util.Random;
 
 
-        public List<Integer> getDim(List<Integer> dimesion) {
-            for(int idx = 0; idx < dimesion.size(); idx++) {
-                dimesion.get(idx)--;
-            }
-            List<Integer> res = dimesion;
-            long retSum = 0;
-            //update the index array
-            while(true) {
-                int idx = 0;
-                while(true) {
-                    if(idx >= dimesion.size()) {
-                        return retSum;
-                    }
-                    if(res.get(idx) == 0) {
-                        res.get(idx) = dimesion.get(idx);
-
-                    }
+public class NDimesion {
+    private int[][][] nums;
+    NDimesion() {
+        nums = new int[5][4][3];
+        Random rand = new Random();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 4; j++) {
+                for (int k = 0; k < 3; k++) {
+                    nums[i][j][k] = rand.nextInt(100);
                 }
-
             }
         }
-        public List<Integer> getElements() {
+    }
+    private int[] getDim() {
+        return new int[]{5, 4, 3};
+    }
 
+    private int getElement(int[] indexes) {
+        // [3, 1, 2]
+        return nums[indexes[0]][indexes[1]][indexes[2]];
+    }
 
+    private void updateIdxes(int[] indexes) {
+        // 000 -> 001
+        int idx = indexes.length - 1;
+        int[] dimensions = getDim(); // 5 4 3
+        // 0 0 0 + 1 >> 0 0 1 >> 1 =? 3
+        // 0 0 2 + 1 >> 0 0 3 >> 3 ?= 3 >> 0 0 3 >> 0 0 0 >> 0 1 0
+        // 4 3 2 + 1 >> 4 3 3 >> 4 4 0 >> 5 0 0 >> idx = -1?
+        while (idx >= 0) {
+            indexes[idx]++;
+            if (indexes[idx] == dimensions[idx]) {
+                indexes[idx] = 0;
+                idx--;
+            }
+            else {
+                return;
+            }
         }
+    }
 
+    public int sumAllElements() {
+        int[] dimensions = getDim();
+        // 0 0 0 -> 4 3 2
+        int[] cur_idxes = new int[dimensions.length];
+        // 计算总共循环的次数
+        int loops = 1;
+        for (int dim : dimensions) {
+            loops *= dim;
+        }
+        int res = 0;
+        // 0 0 0
+        while (loops-- != 0) {
+            int cur = getElement(cur_idxes);
+            res += cur;
+            // cur_idxes + 1. 000 -> 001
+            updateIdxes(cur_idxes);
+        }
+        return res;
+    }
 }
