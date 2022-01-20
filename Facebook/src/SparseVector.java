@@ -40,7 +40,7 @@ class SparseVector {
         return product;
     }
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
         int[] nums1 = {1,0,0,2,3};
         int[] nums2 = {0,3,0,4,0};
 
